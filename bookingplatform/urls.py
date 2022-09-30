@@ -10,7 +10,7 @@ from rest_framework import permissions
 from django.views.decorators.csrf import csrf_exempt
 from graphene_file_upload.django import FileUploadGraphQLView
 
-from jobs.sitemaps import Sitemaps, StaticViewSitemap
+from bookingplatform.sitemaps import Sitemaps, StaticViewSitemap
 
 schema_view = get_schema_view(
     openapi.Info(

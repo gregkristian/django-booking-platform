@@ -56,7 +56,7 @@ MIDDLEWARE = [
     "social_django.middleware.SocialAuthExceptionMiddleware",
 ]
 
-ROOT_URLCONF = "jobs.urls"
+ROOT_URLCONF = "bookingplatform.urls"
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "jobs.wsgi.application"
+WSGI_APPLICATION = "bookingplatform.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -132,7 +132,7 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
-# ALLOWED_HOSTS = ['django-portal.herokuapp.com', 'localhost', 'jobs.manjurulhoque.com', '127.0.0.1', 'localhost:3000']
+
 # cors config
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ["*"]
@@ -294,7 +294,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 GRAPHENE = {
     # package path to schema file
-    "SCHEMA": "jobs.schema.schema",
+    "SCHEMA": "bookingplatform.schema.schema",
     # https://docs.graphene-python.org/projects/django/en/latest/introspection/
     "SCHEMA_INDENT": 4,  # Defaults to None (displays all data on a single line)
     "MIDDLEWARE": ["graphene_django.debug.DjangoDebugMiddleware", "graphql_jwt.middleware.JSONWebTokenMiddleware"],
