@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.utils import translation
 
 from accounts.models import User
-from jobsapp.models import Applicant, Job
+from jobsapp.models import Applicant, BookableObject
 
 
 class BaseTest(TestCase):
@@ -33,7 +33,7 @@ class BaseTest(TestCase):
             "password": "123456",
         }
         cls.user = User.objects.create(**cls.employer)
-        cls.job = Job(**cls.valid_job)
+        cls.job = BookableObject(**cls.valid_job)
         cls.job.user = cls.user
         cls.job.save()
 

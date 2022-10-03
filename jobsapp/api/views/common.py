@@ -5,7 +5,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
-from ...models import Job
+from ...models import BookableObject
 from ..serializers import JobSerializer
 
 
@@ -41,7 +41,7 @@ def categories_list_api_view(request):
     ]
 
     for category in categories:
-        total_jobs = Job.objects.filter(category=category.get("slug")).count()
+        total_jobs = BookableObject.objects.filter(category=category.get("slug")).count()
         category["total_jobs"] = total_jobs
 
     return JsonResponse(categories, safe=False)

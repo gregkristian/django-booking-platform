@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from jobsapp.api.permissions import IsEmployee
 from jobsapp.api.serializers import ApplicantSerializer, AppliedJobSerializer, ApplyJobSerializer, JobSerializer
-from jobsapp.models import Applicant, Job
+from jobsapp.models import Applicant, BookableObject
 
 
 class ApplyJobApiView(CreateAPIView):
@@ -31,7 +31,7 @@ class AppliedJobsAPIView(ListAPIView):
 
     def get_queryset(self):
         applied_jobs_id = list(Applicant.objects.filter(user=self.request.user).values_list("job_id", flat=True))
-        return Job.objects.filter(id__in=applied_jobs_id)
+        return BookableObject.objects.filter(id__in=applied_jobs_id)
 
 
 @api_view(["GET"])

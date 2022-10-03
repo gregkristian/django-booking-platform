@@ -8,11 +8,11 @@ from django.views.generic import CreateView, DetailView, ListView
 
 from ..decorators import user_is_employee
 from ..forms import ApplyJobForm
-from ..models import Applicant, Favorite, Job
+from ..models import Applicant, Favorite, BookableObject
 
 
 class HomeView(ListView):
-    model = Job
+    model = BookableObject
     template_name = "home.html"
     context_object_name = "jobs"
 
@@ -26,7 +26,7 @@ class HomeView(ListView):
 
 
 class SearchView(ListView):
-    model = Job
+    model = BookableObject
     template_name = "jobs/search.html"
     context_object_name = "jobs"
 
@@ -41,14 +41,14 @@ class SearchView(ListView):
 
 
 class JobListView(ListView):
-    model = Job
+    model = BookableObject
     template_name = "jobs/jobs.html"
     context_object_name = "jobs"
     paginate_by = 5
 
 
 class JobDetailsView(DetailView):
-    model = Job
+    model = BookableObject
     template_name = "jobs/details.html"
     context_object_name = "job"
     pk_url_kwarg = "id"

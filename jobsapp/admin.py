@@ -3,10 +3,10 @@ from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 
 # Register your models here.
-from jobsapp.models import Job
+from jobsapp.models import BookableObject
 
 
-@admin.register(Job)
+@admin.register(BookableObject)
 class JobAdmin(admin.ModelAdmin):
     list_display = [
         "title",

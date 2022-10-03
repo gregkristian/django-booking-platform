@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from jobsapp.models import Job
+from jobsapp.models import BookableObject
 
 
 class IsEmployer(BasePermission):
@@ -19,7 +19,7 @@ class IsJobCreator(BasePermission):
     def has_permission(self, request, view):
         job_id = view.kwargs.get("job_id")
         if job_id:
-            if Job.objects.filter(id=job_id, user=request.user).exists():
+            if BookableObject.objects.filter(id=job_id, user=request.user).exists():
                 return True
             else:
                 return False

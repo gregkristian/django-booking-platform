@@ -3,12 +3,12 @@ from datetime import datetime
 from django import forms
 from django.core.exceptions import ValidationError
 
-from jobsapp.models import Applicant, Job
+from jobsapp.models import Applicant, BookableObject
 
 
 class CreateJobForm(forms.ModelForm):
     class Meta:
-        model = Job
+        model = BookableObject
         exclude = ("user", "created_at")
         labels = {
             "last_date": "Last Date",

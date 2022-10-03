@@ -10,7 +10,7 @@ from .manager import JobManager
 JOB_TYPE = (("1", "Full time"), ("2", "Part time"), ("3", "Internship"))
 
 
-class Job(models.Model):
+class BookableObject(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=300)
     description = models.TextField()
@@ -25,6 +25,7 @@ class Job(models.Model):
     filled = models.BooleanField(default=False)
     salary = models.IntegerField(default=0, blank=True)
     tags = models.ManyToManyField(Tag)
+    dummy = models.BooleanField(default=False)
 
     objects = JobManager()
 
@@ -40,7 +41,7 @@ class Job(models.Model):
 
 class Applicant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="applicants")
+    job = models.ForeignKey(BookableObject, on_delete=models.CASCADE, related_name="applicants")
     created_at = models.DateTimeField(default=timezone.now)
     comment = models.TextField(blank=True, null=True)
     status = models.SmallIntegerField(default=1)
@@ -64,7 +65,7 @@ class Applicant(models.Model):
 
 class Favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="favorites")
+    job = models.ForeignKey(BookableObject, on_delete=models.CASCADE, related_name="favorites")
     created_at = models.DateTimeField(default=timezone.now)
     soft_deleted = models.BooleanField(default=False)
 

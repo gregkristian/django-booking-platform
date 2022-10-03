@@ -9,12 +9,12 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from accounts.forms import EmployerProfileUpdateForm
 from jobsapp.decorators import user_is_employer
 from jobsapp.forms import CreateJobForm
-from jobsapp.models import Applicant, Job
+from jobsapp.models import Applicant, BookableObject
 from tags.models import Tag
 
 
 class DashboardView(ListView):
-    model = Job
+    model = BookableObject
     template_name = "jobs/employer/dashboard.html"
     context_object_name = "jobs"
 
@@ -43,7 +43,7 @@ class ApplicantPerJobView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["job"] = Job.objects.get(id=self.kwargs["job_id"])
+        context["job"] = BookableObject.objects.get(id=self.kwargs["job_id"])
         return context
 
 
@@ -95,7 +95,7 @@ class JobUpdateView(UpdateView):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_queryset(self):
-        return Job.objects.filter(user_id=self.request.user.id)
+        return BookableObject.objects.filter(user_id=self.request.user.id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -139,7 +139,7 @@ class ApplicantsListView(ListView):
 @user_is_employer
 def filled(request, job_id=None):
     try:
-        job = Job.objects.get(user_id=request.user.id, id=job_id)
+        job = BookableObject.objects.get(user_id=request.user.id, id=job_id)
         job.filled = True
         job.save()
     except IntegrityError as e:

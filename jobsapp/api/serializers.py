@@ -11,7 +11,7 @@ class JobSerializer(serializers.ModelSerializer):
     job_tags = serializers.SerializerMethodField()
 
     class Meta:
-        model = Job
+        model = BookableObject
         fields = "__all__"
 
     def get_job_tags(self, obj):
@@ -27,7 +27,7 @@ class DashboardJobSerializer(serializers.ModelSerializer):
     total_candidates = serializers.SerializerMethodField()
 
     class Meta:
-        model = Job
+        model = BookableObject
         fields = "__all__"
 
     def get_job_tags(self, obj):
@@ -44,7 +44,7 @@ class NewJobSerializer(serializers.ModelSerializer):
     user = UserSerializer(default=serializers.CurrentUserDefault())
 
     class Meta:
-        model = Job
+        model = BookableObject
         fields = "__all__"
 
 
@@ -78,7 +78,7 @@ class AppliedJobSerializer(serializers.ModelSerializer):
     applicant = serializers.SerializerMethodField("_applicant")
 
     class Meta:
-        model = Job
+        model = BookableObject
         fields = "__all__"
 
     def _applicant(self, obj):
