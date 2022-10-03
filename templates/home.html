@@ -7,22 +7,20 @@
 
 {% block content %}
 
-    <section class="job-form-section job-form-section--image">
+    <section class="job-form-section job-form-section--compressed">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="job-form-box">
-                        <h2 class="heading">Find a <span class="accent">job</span> you will
-                            <span class="accent">love</span>.
-                        </h2>
+                        <h2 class="heading">Find farm</h2>
                         <form id="job-main-form" method="get" action="{% url 'jobs:search' %}" class="job-main-form">
                             <div class="controls">
                                 <div class="row align-items-center">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label for="profession">{% trans 'Position' %}</label>
+                                            <label for="profession">{% trans 'Keyword' %}</label>
                                             <input type="text" id="profession" name="position"
-                                                   placeholder="Position you are looking for" class="form-control">
+                                                   placeholder="Fruit, vegetables, or something else" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-5">
@@ -46,16 +44,23 @@
             </div>
         </div>
     </section>
+    <section class="bg-light-yellow">
+        <div class="container">
+            <h3 class="heading">Maps</h3>
+            <iframe width="800" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=18.0186939239502%2C59.36406314551647%2C18.022341728210453%2C59.36557752972834&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=18/59.36482/18.02052">View Larger Map</a></small>
+        </div>
+    </section>
+
     <section class="bg-light-gray">
         <div class="container">
-            <h3 class="heading">Featured jobs</h3>
+            <h3 class="heading">Featured listings</h3>
             <div class="row featured align-items-stretch">
                 {% for job in jobs %}
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="box-image-text bg-visible full-height">
                             <div class="top">
                                 <a href="#">
-                                    <div class="image">
+                                    <div class="image"> # TODO change placeholder image
                                         <img src="{% static 'img/featured1.jpg' %}" alt="" class="img-fluid">
                                     </div>
                                     <div class="bg"></div>
@@ -68,13 +73,6 @@
                                 <h5><a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a></h5>
                                 <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
                                     {{ job.location }}
-                                    {% if job.type == '1' %}
-                                        <span class="badge featured-badge badge-success">Full time</span>
-                                    {% elif job.type == '2' %}
-                                        <span class="badge featured-badge badge-primary">Part time</span>
-                                    {% else %}
-                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Internship</span>
-                                    {% endif %}
                                 </p>
                                 {% for tag in job.tags.all %}
                                     <span style="color: #ffffff;"
@@ -86,47 +84,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <h4 class="heading">Trending this month</h4>
-            {% for trending in trendings %}
-                <div class="job-listing  job-listing--last">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-6">
-                            <div class="row">
-                                <div class="col-2">
-                                    <img src="{% static 'img/company-1.png' %}"
-                                         alt="ShareBoardd " class="img-fluid">
-                                </div>
-                                <div class="col-10">
-                                    <h4 class="job__title">
-                                        <a href="{% url 'jobs:jobs-detail' trending.id %}">{{ trending.title }}</a>
-                                    </h4>
-                                    <p class="job__company">
-                                        {{ trending.company_name }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>
-                            {{ trending.location }}
-                        </div>
-                        <div class="col-10 col-md-3 col-lg-3 ml-auto">
-                            <p>Posted {{ trending.created_at|timesince }}</p>
-                        </div>
-                        <div class="col-sm-12 col-md-2 col-lg-1">
-                            <div class="job__star">
-                                <a href="#" data-toggle="tooltip" data-placement="top"
-                                   title="Save to favourites" class="job__star__link">
-                                    <i class="fa fa-star"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
         </div>
     </section>
     <section class="section-divider">

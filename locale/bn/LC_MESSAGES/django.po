@@ -26,9 +26,9 @@ msgstr "English"
 msgid "Bengali"
 msgstr "বাংলা"
 
-#: templates/home.html:23
-msgid "Position"
-msgstr "অবস্থান"
+#: templates/home.html:21
+msgid "Keyword"
+msgstr "Sök ord"
 
 #: templates/lang_selector.html:9
 msgid "Language"
