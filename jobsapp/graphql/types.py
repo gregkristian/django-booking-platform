@@ -4,12 +4,12 @@ from graphene_django.utils import camelize
 
 from .exceptions import WrongUsage
 
-from jobsapp.models import BookableObject
+from jobsapp.models import BookableEvent
 
 
 class JobGQLType(DjangoObjectType):
     class Meta:
-        model = BookableObject
+        model = BookableEvent
         fields = "__all__"
 
 

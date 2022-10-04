@@ -4,7 +4,7 @@ from django.test import TestCase
 
 from accounts.models import User
 from jobsapp.forms import CreateJobForm
-from jobsapp.models import BookableObject
+from jobsapp.models import BookableEvent
 from tags.models import Tag
 
 
@@ -41,7 +41,7 @@ class TestCreateJobForm(TestCase):
         job.user = self.user
         job.save()
 
-        self.assertIsInstance(job, BookableObject, "Not a job")
+        self.assertIsInstance(job, BookableEvent, "Not a job")
 
     def test_field_required(self):
         form = CreateJobForm(data={})

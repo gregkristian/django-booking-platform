@@ -12,7 +12,7 @@ from jobsapp.graphql.permissions import IsAuthenticated, IsEmployer
 from graphene.types import Int
 
 from jobsapp.graphql.types import JobGQLType
-from jobsapp.models import BookableObject
+from jobsapp.models import BookableEvent
 
 
 class CreateNewJob(MutationMixin, DynamicArgsMixin, CreateNewJobMixin, graphene.Mutation):
@@ -56,5 +56,5 @@ class UpdateJob(MutationMixin, DynamicArgsMixin, SingleObjectMixin, UpdateJobMix
         tags = graphene.List(Int, required=False)
 
     permission_classes = [IsAuthenticated, IsEmployer]
-    model = BookableObject
+    model = BookableEvent
     check_object_level_permission: bool = False

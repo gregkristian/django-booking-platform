@@ -1,9 +1,8 @@
 from django.db import models
 
+class BookableEventManager(models.Manager):
+    # Placeholder class for manager. Example below
 
-class JobManager(models.Manager):
-    def filled(self, *args, **kwargs):
-        return self.filter(filled=True, *args, **kwargs)
-
-    def unfilled(self, *args, **kwargs):
-        return self.filter(filled=False, *args, **kwargs)
+    def with_description(self, *args, **kwargs):
+        return self.filter(description!="", *args, **kwargs)
+    

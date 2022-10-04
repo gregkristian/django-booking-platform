@@ -1,7 +1,7 @@
 from django_elasticsearch_dsl import Document
 from django_elasticsearch_dsl.registries import registry
 
-from .models import BookableObject
+from .models import BookableEvent
 
 
 # TODO disabled for testing purpose
@@ -16,7 +16,7 @@ class JobDocument(Document):
         #             'number_of_replicas': 0}
 
     class Django:
-        model = BookableObject  # The model associated with this Document
+        model = BookableEvent  # The model associated with this Document
 
         # The fields of the model you want to be indexed in Elasticsearch
         fields = ["title", "location"]

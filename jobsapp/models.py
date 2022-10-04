@@ -5,29 +5,23 @@ from django.utils import timezone
 from accounts.models import User
 from tags.models import Tag
 
-from .manager import JobManager
+from .manager import BookableEventManager
 
-JOB_TYPE = (("1", "Full time"), ("2", "Part time"), ("3", "Internship"))
+EVENT_TYPE = (("1", "Farm"), ("2", "Stuga"), ("3", "Other"))
 
-
-class BookableObject(models.Model):
+class BookableEvent(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=300)
+    #object = models.ForeignKey(Object) # TODO add
+    event_name = models.CharField(max_length=300)
+    address = models.CharField(max_length=150)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
     description = models.TextField()
-    location = models.CharField(max_length=150)
-    type = models.CharField(choices=JOB_TYPE, max_length=10)
-    category = models.CharField(max_length=100)
-    last_date = models.DateTimeField()
-    company_name = models.CharField(max_length=100)
-    company_description = models.CharField(max_length=300)
-    website = models.CharField(max_length=100, default="")
     created_at = models.DateTimeField(default=timezone.now)
-    filled = models.BooleanField(default=False)
-    salary = models.IntegerField(default=0, blank=True)
+    num_bookings = models.IntegerField(default=0)
     tags = models.ManyToManyField(Tag)
-    dummy = models.BooleanField(default=False)
 
-    objects = JobManager()
+    objects = BookableEventManager()
 
     class Meta:
         ordering = ["id"]
@@ -36,12 +30,12 @@ class BookableObject(models.Model):
         return reverse("jobs:jobs-detail", args=[self.id])
 
     def __str__(self):
-        return self.title
+        return self.event_name
 
 
 class Applicant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(BookableObject, on_delete=models.CASCADE, related_name="applicants")
+    job = models.ForeignKey(BookableEvent, on_delete=models.CASCADE, related_name="applicants")
     created_at = models.DateTimeField(default=timezone.now)
     comment = models.TextField(blank=True, null=True)
     status = models.SmallIntegerField(default=1)
@@ -65,9 +59,9 @@ class Applicant(models.Model):
 
 class Favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(BookableObject, on_delete=models.CASCADE, related_name="favorites")
+    job = models.ForeignKey(BookableEvent, on_delete=models.CASCADE, related_name="favorites")
     created_at = models.DateTimeField(default=timezone.now)
     soft_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.job.title
+        return self.job.event_name

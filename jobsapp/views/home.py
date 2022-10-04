@@ -8,25 +8,19 @@ from django.views.generic import CreateView, DetailView, ListView
 
 from ..decorators import user_is_employee
 from ..forms import ApplyJobForm
-from ..models import Applicant, Favorite, BookableObject
+from ..models import Applicant, Favorite, BookableEvent
 
 
 class HomeView(ListView):
-    model = BookableObject
+    model = BookableEvent
     template_name = "home.html"
     context_object_name = "jobs"
 
     def get_queryset(self):
-        return self.model.objects.unfilled()[:6]
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["trendings"] = self.model.objects.unfilled(created_at__month=timezone.now().month)[:3]
-        return context
-
+        return self.model.objects.all()
 
 class SearchView(ListView):
-    model = BookableObject
+    model = BookableEvent
     template_name = "jobs/search.html"
     context_object_name = "jobs"
 
@@ -41,14 +35,16 @@ class SearchView(ListView):
 
 
 class JobListView(ListView):
-    model = BookableObject
+    model = BookableEvent
     template_name = "jobs/jobs.html"
     context_object_name = "jobs"
     paginate_by = 5
+    def get_queryset(self):
+        return self.model.objects.all()
 
 
 class JobDetailsView(DetailView):
-    model = BookableObject
+    model = BookableEvent
     template_name = "jobs/details.html"
     context_object_name = "job"
     pk_url_kwarg = "id"

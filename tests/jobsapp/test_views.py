@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from jobsapp.models import BookableObject
+from jobsapp.models import BookableEvent
 
 
 class TestHomeView(TestCase):
@@ -21,7 +21,7 @@ class TestSearchView(TestCase):
         super().setUp()
 
     def test_empty_query(self):
-        jobs = BookableObject.objects.filter(title__contains="software")
+        jobs = BookableEvent.objects.filter(title__contains="software")
         response = self.client.get(self.url + "?position=software")
         self.assertFalse(b"We have found %a jobs" % str(jobs.count()) in response.content.lower())
 

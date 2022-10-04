@@ -1,7 +1,7 @@
 import graphene
 
 from .types import JobGQLType
-from jobsapp.models import BookableObject
+from jobsapp.models import BookableEvent
 from .exceptions import GraphQLError
 
 
@@ -10,12 +10,12 @@ class JobQuery(graphene.ObjectType):
     job = graphene.Field(JobGQLType, pk=graphene.Int())
 
     def resolve_jobs(self, info):
-        return BookableObject.objects.all()
+        return BookableEvent.objects.all()
 
     def resolve_job(self, info, pk, **kwargs):
         if pk:
             try:
-                return BookableObject.objects.get(pk=pk)
-            except BookableObject.DoesNotExist:
+                return BookableEvent.objects.get(pk=pk)
+            except BookableEvent.DoesNotExist:
                 return GraphQLError("Job doesn't exists")
         return None
