@@ -9,8 +9,6 @@ from social_core.backends.oauth import BaseOAuth2
 from social_core.exceptions import AuthForbidden, AuthTokenError, MissingBackend
 from social_django.utils import load_backend, load_strategy
 
-from jobsapp.api.permissions import IsEmployee
-
 from .custom_claims import MyTokenObtainPairSerializer
 from .serializers import SocialSerializer, UserCreateSerializer, UserSerializer
 
@@ -31,7 +29,7 @@ def registration(request):
 class EditEmployeeProfileAPIView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     http_method_names = ["get", "put"]
-    permission_classes = [IsAuthenticated, IsEmployee]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         return self.request.user

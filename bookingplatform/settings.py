@@ -166,7 +166,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "EXCEPTION_HANDLER": "jobsapp.api.custom_exception.custom_exception_handler",
+    "EXCEPTION_HANDLER": "rest_framework.views.exception_handler",
 }
 
 SIMPLE_JWT = {

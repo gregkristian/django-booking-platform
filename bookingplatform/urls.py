@@ -42,7 +42,6 @@ urlpatterns = lang_patterns + [
             [
                 path("swagger", schema_view.with_ui("swagger", cache_timeout=0)),
                 path("", include("accounts.api.urls")),
-                path("", include("jobsapp.api.urls")),
                 path("", include("tags.api.urls")),
                 # path('auth/oauth/', include('rest_framework_social_oauth2.urls'))
             ]
