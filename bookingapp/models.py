@@ -1,3 +1,4 @@
+from collections import namedtuple
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -5,29 +6,22 @@ from django.utils import timezone
 from accounts.models import User
 from tags.models import Tag
 
-from .manager import JobManager
+from .manager import BookableObjectManager
 
-JOB_TYPE = (("1", "Full time"), ("2", "Part time"), ("3", "Internship"))
-
+OBJECT_TYPE = (("1", "Farm"), ("2", "Stuga"), ("3", "Other"))
 
 class BookableObject(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=300)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    type = models.CharField(choices=OBJECT_TYPE, max_length=10)
+    name = models.CharField(max_length=150)
+    address = models.CharField(max_length=150)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
     description = models.TextField()
-    location = models.CharField(max_length=150)
-    type = models.CharField(choices=JOB_TYPE, max_length=10)
-    category = models.CharField(max_length=100)
-    last_date = models.DateTimeField()
-    company_name = models.CharField(max_length=100)
-    company_description = models.CharField(max_length=300)
-    website = models.CharField(max_length=100, default="")
-    created_at = models.DateTimeField(default=timezone.now)
-    filled = models.BooleanField(default=False)
-    salary = models.IntegerField(default=0, blank=True)
+    creation_date = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag)
-    dummy = models.BooleanField(default=False)
 
-    objects = JobManager()
+    objects = BookableObjectManager()
 
     class Meta:
         ordering = ["id"]
@@ -36,7 +30,7 @@ class BookableObject(models.Model):
         return reverse("jobs:jobs-detail", args=[self.id])
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Applicant(models.Model):
@@ -70,4 +64,4 @@ class Favorite(models.Model):
     soft_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.job.title
+        return self.job.event_name

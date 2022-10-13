@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class JobManager(models.Manager):
+class BookableObjectManager(models.Manager):
     def filled(self, *args, **kwargs):
         return self.filter(filled=True, *args, **kwargs)
 

@@ -5,20 +5,17 @@ from django.contrib.flatpages.models import FlatPage
 # Register your models here.
 from bookingapp.models import BookableObject
 
-
 @admin.register(BookableObject)
-class JobAdmin(admin.ModelAdmin):
+class BookableObjectAdmin(admin.ModelAdmin):
     list_display = [
-        "title",
-        "salary",
-        "location",
+        "name",
         "type",
-        "category",
-        "company_name",
-        "last_date",
-        "created_at",
-        "filled",
-        "user",
+        "owner",
+        "address",
+        "latitude",
+        "longitude",
+        "description",
+        "creation_date",
     ]
-    list_filter = ["salary", "last_date", "created_at", "user"]
-    date_hierarchy = "created_at"
+    list_filter = ["owner", "type"]
+    date_hierarchy = "creation_date"

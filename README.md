@@ -1,3 +1,12 @@
+## PLAN:
+Summary: Remove all booking interaction. Make it basic info platform
+
+1. Rename BookableEvent back to BookableObject
+2. Remove everything related to booking (date, button, etc)
+    2a. Create page for owner: only to create object
+    2b. For user: can search but cannot book
+3. C
+
 # Django Booking Platform
 #### Forked from [manjurulhoque/django-job-portal](https://github.com/manjurulhoque/django-job-portal)
 #### An open source online booking platform.

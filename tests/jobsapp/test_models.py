@@ -34,7 +34,7 @@ class BaseTest(TestCase):
         }
         cls.user = User.objects.create(**cls.employer)
         cls.job = BookableObject(**cls.valid_job)
-        cls.job.user = cls.user
+        cls.job.owner = cls.user
         cls.job.save()
 
 
