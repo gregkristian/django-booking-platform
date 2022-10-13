@@ -1,6 +1,6 @@
 import graphene
 
-from jobsapp.graphql.types import ExpectedErrorType
+from bookingapp.graphql.types import ExpectedErrorType
 
 
 class Output:

@@ -1,6 +1,6 @@
 from django.utils.translation import gettext as _
 
-from jobsapp.graphql.exceptions import GraphQLError
+from bookingapp.graphql.exceptions import GraphQLError
 
 
 class UserAlreadyVerified(GraphQLError):

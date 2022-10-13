@@ -6,9 +6,9 @@ import graphql_jwt
 from graphene_django.debug import DjangoDebug
 
 from bookingplatform.settings import GRAPHQL_JWT
-from jobsapp.graphql import queries as jobs_queries
+from bookingapp.graphql import queries as jobs_queries
 from accounts.graphql import mutations as auth_mutations
-from jobsapp.graphql import mutations as job_mutation
+from bookingapp.graphql import mutations as job_mutation
 from graphql_jwt.settings import jwt_settings
 
 

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from jobsapp.models import BookableObject
+from bookingapp.models import BookableObject
 
 
 class TestHomeView(TestCase):

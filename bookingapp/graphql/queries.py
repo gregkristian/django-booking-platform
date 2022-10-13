@@ -1,7 +1,7 @@
 import graphene
 
 from .types import JobGQLType
-from jobsapp.models import BookableObject
+from bookingapp.models import BookableObject
 from .exceptions import GraphQLError
 
 

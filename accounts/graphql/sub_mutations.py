@@ -2,7 +2,7 @@ import graphene
 import graphql_jwt
 
 from accounts.graphql.graphql_mixins import EmployeeRegisterMixin, EmployerRegisterMixin
-from jobsapp.graphql.graphql_mixins import DynamicArgsMixin, MutationMixin
+from bookingapp.graphql.graphql_mixins import DynamicArgsMixin, MutationMixin
 
 
 class EmployeeRegister(MutationMixin, DynamicArgsMixin, EmployeeRegisterMixin, graphene.Mutation):

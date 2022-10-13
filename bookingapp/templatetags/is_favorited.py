@@ -1,6 +1,6 @@
 from django import template
 
-from jobsapp.models import Favorite
+from bookingapp.models import Favorite
 
 register = template.Library()
 

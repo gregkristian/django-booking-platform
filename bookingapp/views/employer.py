@@ -7,9 +7,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from accounts.forms import EmployerProfileUpdateForm
-from jobsapp.decorators import user_is_employer
-from jobsapp.forms import CreateJobForm
-from jobsapp.models import Applicant, BookableObject
+from bookingapp.decorators import user_is_employer
+from bookingapp.forms import CreateJobForm
+from bookingapp.models import Applicant, BookableObject
 from tags.models import Tag
 
 

@@ -1,18 +1,18 @@
 import graphene
 
-from jobsapp.graphql.graphql_mixins import (
+from bookingapp.graphql.graphql_mixins import (
     DynamicArgsMixin,
     MutationMixin,
     CreateNewJobMixin,
     UpdateJobMixin,
     SingleObjectMixin,
 )
-from jobsapp.graphql.input_types import TagInput
-from jobsapp.graphql.permissions import IsAuthenticated, IsEmployer
+from bookingapp.graphql.input_types import TagInput
+from bookingapp.graphql.permissions import IsAuthenticated, IsEmployer
 from graphene.types import Int
 
-from jobsapp.graphql.types import JobGQLType
-from jobsapp.models import BookableObject
+from bookingapp.graphql.types import JobGQLType
+from bookingapp.models import BookableObject
 
 
 class CreateNewJob(MutationMixin, DynamicArgsMixin, CreateNewJobMixin, graphene.Mutation):

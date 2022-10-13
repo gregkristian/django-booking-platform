@@ -25,7 +25,7 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
-lang_patterns = i18n_patterns(path("", include("jobsapp.urls")),
+lang_patterns = i18n_patterns(path("", include("bookingapp.urls")),
                               path("", include("accounts.urls")),
                               )
 

@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "rest_framework_simplejwt.token_blacklist",
-    "jobsapp",
+    "bookingapp",
     "accounts",
     "tags",
     "oauth2_provider",

@@ -4,7 +4,7 @@ from graphene_django.utils import camelize
 
 from .exceptions import WrongUsage
 
-from jobsapp.models import BookableObject
+from bookingapp.models import BookableObject
 
 
 class JobGQLType(DjangoObjectType):

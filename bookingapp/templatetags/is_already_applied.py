@@ -1,6 +1,6 @@
 from django import template
 
-from jobsapp.models import Applicant
+from bookingapp.models import Applicant
 
 register = template.Library()
 

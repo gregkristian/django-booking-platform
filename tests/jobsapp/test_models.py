@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.utils import translation
 
 from accounts.models import User
-from jobsapp.models import Applicant, BookableObject
+from bookingapp.models import Applicant, BookableObject
 
 
 class BaseTest(TestCase):
