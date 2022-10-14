@@ -6,29 +6,18 @@ from django.core.exceptions import ValidationError
 from bookingapp.models import Applicant, BookableObject
 
 
-class CreateJobForm(forms.ModelForm):
+class CreateBookableObjectForm(forms.ModelForm):
     class Meta:
         model = BookableObject
-        exclude = ("user", "created_at")
-        labels = {
-            "last_date": "Last Date",
-            "company_name": "Company Name",
-            "company_description": "Company Description",
-        }
+        exclude = ('owner','creation_date')
 
     def is_valid(self):
-        valid = super(CreateJobForm, self).is_valid()
+        valid = super(CreateBookableObjectForm, self).is_valid()
 
         # if already valid, then return True
         if valid:
             return valid
         return valid
-
-    def clean_last_date(self):
-        date = self.cleaned_data["last_date"]
-        if date.date() < datetime.now().date():
-            raise ValidationError("Last date can't be before from today")
-        return date
 
     def clean_tags(self):
         tags = self.cleaned_data["tags"]
@@ -37,7 +26,7 @@ class CreateJobForm(forms.ModelForm):
         return tags
 
     def save(self, commit=True):
-        job = super(CreateJobForm, self).save(commit=False)
+        job = super(CreateBookableObjectForm, self).save(commit=False)
         if commit:
             job.save()
             for tag in self.cleaned_data["tags"]:

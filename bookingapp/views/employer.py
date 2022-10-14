@@ -8,7 +8,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from accounts.forms import EmployerProfileUpdateForm
 from bookingapp.decorators import user_is_employer
-from bookingapp.forms import CreateJobForm
+from bookingapp.forms import CreateBookableObjectForm
 from bookingapp.models import Applicant, BookableObject
 from tags.models import Tag
 
@@ -24,7 +24,7 @@ class DashboardView(ListView):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_queryset(self):
-        return self.model.objects.filter(user_id=self.request.user.id)
+        return self.model.objects.filter(owner_id=self.request.user.id)
 
 
 class ApplicantPerJobView(ListView):
@@ -47,9 +47,9 @@ class ApplicantPerJobView(ListView):
         return context
 
 
-class JobCreateView(CreateView):
+class BookableObjectCreateView(CreateView):
     template_name = "jobs/create.html"
-    form_class = CreateJobForm
+    form_class = CreateBookableObjectForm
     extra_context = {"title": "Post New Job"}
     success_url = reverse_lazy("jobs:employer-dashboard")
 
@@ -68,8 +68,8 @@ class JobCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(JobCreateView, self).form_valid(form)
+        form.instance.owner = self.request.user
+        return super(BookableObjectCreateView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
         self.object = None
@@ -84,7 +84,7 @@ class JobCreateView(CreateView):
 @method_decorator(user_is_employer, name="dispatch")
 class JobUpdateView(UpdateView):
     template_name = "jobs/update.html"
-    form_class = CreateJobForm
+    form_class = CreateBookableObjectForm
     extra_context = {"title": "Edit Job"}
     slug_field = "id"
     slug_url_kwarg = "id"

@@ -9,7 +9,7 @@ from django.forms.models import model_to_dict
 from accounts.graphql.constants import Messages
 from .exceptions import PermissionDeniedError
 from .graphql_base import Output
-from ..forms import CreateJobForm
+from ..forms import CreateBookableObjectForm
 
 logger = logging.getLogger(__name__)
 
@@ -301,7 +301,7 @@ class BaseQueryChecker(PermissionMixin, SingleObjectMixin):
 
 
 class CreateNewJobMixin(Output):
-    form = CreateJobForm
+    form = CreateBookableObjectForm
 
     @classmethod
     def resolve_mutation(cls, root, info, **kwargs):
@@ -319,7 +319,7 @@ class CreateNewJobMixin(Output):
 
 
 class UpdateJobMixin(Output):
-    form = CreateJobForm
+    form = CreateBookableObjectForm
 
     @classmethod
     def resolve_mutation(cls, root, info, **kwargs):

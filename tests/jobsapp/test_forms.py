@@ -3,7 +3,7 @@ from http import HTTPStatus
 from django.test import TestCase
 
 from accounts.models import User
-from bookingapp.forms import CreateJobForm
+from bookingapp.forms import CreateBookableObjectForm
 from bookingapp.models import BookableObject
 from tags.models import Tag
 
@@ -33,7 +33,7 @@ class TestCreateJobForm(TestCase):
         self.user = User.objects.create(**self.employer)
 
     def test_valid_and_save_form(self):
-        form = CreateJobForm(data=self.valid_job)
+        form = CreateBookableObjectForm(data=self.valid_job)
         valid = form.is_valid()
         self.assertTrue(valid)
 
@@ -44,7 +44,7 @@ class TestCreateJobForm(TestCase):
         self.assertIsInstance(job, BookableObject, "Not a job")
 
     def test_field_required(self):
-        form = CreateJobForm(data={})
+        form = CreateBookableObjectForm(data={})
         form.is_valid()
 
         self.assertEqual(form.errors["title"], ["This field is required."])
