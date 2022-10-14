@@ -17,11 +17,10 @@ class HomeView(ListView):
     context_object_name = "jobs"
 
     def get_queryset(self):
-        return self.model.objects.unfilled()[:6]
+        return self.model.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["trendings"] = self.model.objects.unfilled(created_at__month=timezone.now().month)[:3]
         return context
 
 

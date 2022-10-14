@@ -1258,11 +1258,6 @@ strong {
     margin-bottom: 0
 }
 
-.job-form-section.job-form-section--image {
-    background: center center url("../img/meeting.jpg") no-repeat;
-    background-size: cover
-}
-
 .job-main-form__button {
     margin-top: 15px;
     display: block;
