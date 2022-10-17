@@ -37,6 +37,6 @@ urlpatterns = [
         ),
     ),
     path("apply-job/<int:job_id>/", ApplyJobView.as_view(), name="apply-job"),
-    path("jobs/", JobListView.as_view(), name="jobs"),
+    path("farms/", BookableObjectListView.as_view(), name="farms"),
     path("jobs/<int:id>/", JobDetailsView.as_view(), name="jobs-detail"),
 ]

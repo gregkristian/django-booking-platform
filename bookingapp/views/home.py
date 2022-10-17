@@ -39,10 +39,10 @@ class SearchView(ListView):
         )
 
 
-class JobListView(ListView):
+class BookableObjectListView(ListView):
     model = BookableObject
-    template_name = "jobs/jobs.html"
-    context_object_name = "jobs"
+    template_name = "listing/listing.html"
+    context_object_name = "listing"
     paginate_by = 5
 
 

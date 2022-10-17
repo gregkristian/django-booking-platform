@@ -9,17 +9,17 @@
 
     <section class="job-form-section job-form-section--compressed">
         <div class="container">
-            <h4 class="heading">Find a <span class="accent">job </span> you will <span class="accent">love</span></h4>
+            <h4 class="heading">Find farm</h4>
             <form id="job-main-form" method="get" class="job-main-form">
                 <div class="controls">
                     <div class="row align-items-end">
                         <div class="col-sm-1 col-lg-2"></div>
                         <div class="col-sm-5 col-lg-4 form-group">
-                            <label for="profession">Profession</label>
-                            <input type="text" id="profession" name="profession"
-                                   placeholder="Profession you are looking for" class="form-control">
+                            <label for="keyword">Keyword</label>
+                            <input type="text" id="keyword" name="keyword"
+                                   placeholder="What are you looking for?" class="form-control">
                         </div>
-                        <div class="col-sm-5 col-lg-4 form-group">
+                          <div class="col-sm-5 col-lg-4 form-group">
                             <label for="location">Location</label>
                             <input type="text" id="location" name="location" placeholder="Any particular location?"
                                    value="" class="form-control">
@@ -36,22 +36,17 @@
     </section>
     <section>
         <div class="container">
-            <h3 class="heading">We have found <span class="accent">{{ jobs.count }}</span> jobs</h3>
-            {% for job in jobs %}
+            <h3 class="heading">We have found <span class="accent">{{ listing.count }}</span> farms</h3>
+            {% for job in listing %}
                 <div class="job-listing  ">
                     <div class="row">
                         <div class="col-md-12 col-lg-6">
                             <div class="row">
                                 <div class="col-2">
-                                    <img src="{% static 'img/farm.png' %}"
-                                         alt="Ipsioou " class="img-fluid">
+                                    <img src="{% static 'img/farm.png' %}" alt="Ipsioou " class="img-fluid">
                                 </div>
                                 <div class="col-10">
-                                    <h4 class="job__title"><a
-                                            href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a></h4>
-                                    <p class="job__company">
-                                        {{ job.company_name }}
-                                    </p>
+                                    <h4 class="job__title"><a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.name }}</a></h4>
                                     {% for tag in job.tags.all %}
                                         <span style="color: #ffffff;" class="badge featured-badge badge-secondary">{{ tag.name }}</span>
                                     {% endfor %}
@@ -59,30 +54,8 @@
                             </div>
                         </div>
                         <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>
-                            {{ job.location }}
+                            {{ job.address }}
                         </div>
-                        <div class="col-10 col-md-3 col-lg-3 ml-auto">
-                            <p>Posted {{ job.created_at|timesince }}</p>
-                        </div>
-                        {% if user.is_authenticated and request.user.role == 'employee' %}
-                            <div class="col-sm-12 col-md-2 col-lg-1">
-                                <div class="job__star">
-                                    {% is_favorited job as is_already_favorited %}
-                                    {% if is_already_favorited %}
-                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{ job.id }}"
-                                           data-placement="top" title="Saved to favourites"
-                                           class="job__star__link favorite">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    {% else %}
-                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{ job.id }}"
-                                           data-placement="top" title="Save to favourites" class="job__star__link">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
