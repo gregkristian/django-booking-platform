@@ -23,12 +23,12 @@ class TestLoginView(BaseTest):
     def test_redirect_if_authenticated(self):
         self.client.login(email="test@test.com", password="Abcdefgh.1")
         response = self.client.get(reverse("accounts:login"))
-        self.assertURLEqual(reverse("jobs:home"), "/" + self.language_code + response.url)
+        self.assertURLEqual(reverse("booking:home"), "/" + self.language_code + response.url)
         self.client.logout()
 
     def test_submit_form(self):
         response = self.client.post(reverse("accounts:login"), {"email": "test@test.com", "password": "Abcdefgh.1"})
-        self.assertURLEqual(reverse("jobs:home"), "/" + self.language_code + response.url)
+        self.assertURLEqual(reverse("booking:home"), "/" + self.language_code + response.url)
 
 
 class TestLogoutView(BaseTest):

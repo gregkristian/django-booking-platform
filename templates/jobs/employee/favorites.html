@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="col-10">
                                         <h4 class="job__title">
-                                            <a href="{% url 'jobs:jobs-detail' trending.job.id %}">{{ trending.job.title }}</a>
+                                            <a href="{% url 'booking:jobs-detail' trending.job.id %}">{{ trending.job.title }}</a>
                                         </h4>
                                         <p class="job__company">
                                             {{ trending.job.company_name }}
@@ -87,7 +87,7 @@
             let that = $(this);
             $.ajax({
                 type: "POST",
-                url: "{% url 'jobs:favorite' %}",
+                url: "{% url 'booking:favorite' %}",
                 data: {job_id},
                 success: function (res) {
                     if (res.status === "added") {

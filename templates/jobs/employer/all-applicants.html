@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h4><a href="{% url 'jobs:applied-applicant-view' applicant.job.id applicant.id %}">{{ applicant.user.get_full_name }}</a><small>({{ applicant.get_status }})</small></h4>
+                                    <h4><a href="{% url 'booking:applied-applicant-view' applicant.job.id applicant.id %}">{{ applicant.user.get_full_name }}</a><small>({{ applicant.get_status }})</small></h4>
                                     <h6>Skills:
                                         {% for tag in applicant.user.profile.tags.all %}
                                             <span style="color: #ffffff;" class="badge featured-badge badge-secondary">{{ tag.name }}</span>

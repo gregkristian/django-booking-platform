@@ -41,7 +41,7 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a href="{% url 'jobs:home' %}" class="navbar-brand">
+            <a href="{% url 'booking:home' %}" class="navbar-brand">
                 <img src="{% static 'img/logo-small.png' %}" alt="logo" class="d-none d-lg-block">
                 <span class="sr-only">Home</span>
             </a>
@@ -53,10 +53,10 @@
                 {% with request.resolver_match.url_name as url_name %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item {% if url_name == 'home' %}active{% endif %}">
-                            <a href="{% url 'jobs:home' %}" class="nav-link">Home <span class="sr-only">(current)</span></a>
+                            <a href="{% url 'booking:home' %}" class="nav-link">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item {% if url_name == 'farms' %}active{% endif %}">
-                            <a href="{% url 'jobs:farms' %}" class="nav-link">Farms</a>
+                            <a href="{% url 'booking:farms' %}" class="nav-link">Farms</a>
                         </li>
                         <li class="nav-item">
                             <a href="/{{ LANGUAGE_CODE }}/about-us/" class="nav-link">About Us</a>
@@ -80,12 +80,12 @@
                                     {% endif %}
                                 </a>
                                 <div aria-labelledby="clientZone" class="dropdown-menu">
-                                    <a href="{% url 'jobs:employer-dashboard' %}"
+                                    <a href="{% url 'booking:employer-dashboard' %}"
                                        class="dropdown-item {% if url_name == 'employer-dashboard' %}active{% endif %}"
                                     >
                                         Dashboard
                                     </a>
-                                    <a href="{% url 'jobs:employer-jobs-create' %}"
+                                    <a href="{% url 'booking:employer-jobs-create' %}"
                                        class="dropdown-item {% if url_name == 'employer-jobs-create' %}active{% endif %}"
                                     >
                                         Post a new job
@@ -95,7 +95,7 @@
                             </li>
                         {% elif request.user.is_authenticated and request.user.role == 'employee' %}
                             <li class="nav-item {% if url_name == 'employee-favorites' %}active{% endif %}">
-                                <a href="{% url 'jobs:employee-favorites' %}" class="nav-link">Favorites</a>
+                                <a href="{% url 'booking:employee-favorites' %}" class="nav-link">Favorites</a>
                             </li>
 
                             <li class="nav-item dropdown">

@@ -48,22 +48,22 @@ class Sitemaps:
 
     class Home(SitemapBase):
         i18n = True
-        name = "jobs:home"
+        name = "booking:home"
         changefreq = ChangeFreq.weekly
 
     class Search(SitemapBase):
         i18n = True
-        name = "jobs:search"
+        name = "booking:search"
         changefreq = ChangeFreq.weekly
 
     class Favorite(SitemapBase):
         i18n = True
-        name = "jobs:favorite"
+        name = "booking:favorite"
         changefreq = ChangeFreq.weekly
 
     class Jobs(SitemapBase):
         i18n = True
-        name = "jobs:jobs"
+        name = "booking:jobs"
         changefreq = ChangeFreq.weekly
 
     def __iter__(self):

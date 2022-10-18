@@ -30,7 +30,7 @@ class BookableObjectCreateView(CreateView):
     template_name = "jobs/create.html"
     form_class = CreateBookableObjectForm
     extra_context = {"title": "Post New Job"}
-    success_url = reverse_lazy("jobs:employer-dashboard")
+    success_url = reverse_lazy("booking:employer-dashboard")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
     @method_decorator(user_is_employer)
@@ -67,7 +67,7 @@ class JobUpdateView(UpdateView):
     extra_context = {"title": "Edit Job"}
     slug_field = "id"
     slug_url_kwarg = "id"
-    success_url = reverse_lazy("jobs:employer-dashboard")
+    success_url = reverse_lazy("booking:employer-dashboard")
     context_object_name = "job"
 
     def dispatch(self, request, *args, **kwargs):

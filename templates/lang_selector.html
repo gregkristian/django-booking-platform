@@ -17,7 +17,7 @@
     <div aria-labelledby="clientZone" class="dropdown-menu">
         {% for lang_code, lang_name in languages %}
             {% language lang_code %}
-                <a href="{% url "jobs:home" %}" data-lang-code="{{ lang_code }}" class="dropdown-item">{{ lang_name }}</a>
+                <a href="{% url "booking:home" %}" data-lang-code="{{ lang_code }}" class="dropdown-item">{{ lang_name }}</a>
             {% endlanguage %}
         {% endfor %}
     </div>
