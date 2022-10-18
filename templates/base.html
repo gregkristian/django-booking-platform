@@ -94,8 +94,8 @@
                                 </div>
                             </li>
                         {% elif request.user.is_authenticated and request.user.role == 'employee' %}
-                            <li class="nav-item {% if url_name == 'employee-favorites' %}active{% endif %}">
-                                <a href="{% url 'booking:employee-favorites' %}" class="nav-link">Favorites</a>
+                            <li class="nav-item {% if url_name == 'user-favorites' %}active{% endif %}">
+                                <a href="{% url 'booking:user-favorites' %}" class="nav-link">Favorites</a>
                             </li>
 
                             <li class="nav-item dropdown">

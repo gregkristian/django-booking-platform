@@ -27,9 +27,9 @@ class DashboardView(ListView):
         return self.model.objects.filter(owner_id=self.request.user.id)
 
 class BookableObjectCreateView(CreateView):
-    template_name = "jobs/create.html"
+    template_name = "listing/create.html"
     form_class = CreateBookableObjectForm
-    extra_context = {"title": "Post New Job"}
+    extra_context = {"title": "Post New Listing"}
     success_url = reverse_lazy("booking:owner-dashboard")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
@@ -62,13 +62,12 @@ class BookableObjectCreateView(CreateView):
 @method_decorator(login_required(login_url=reverse_lazy("accounts:login")), name="dispatch")
 @method_decorator(user_is_employer, name="dispatch")
 class BookableObjectEditView(UpdateView):
-    template_name = "jobs/update.html"
+    template_name = "listing/edit.html"
     form_class = CreateBookableObjectForm
-    extra_context = {"title": "Edit Job"}
+    extra_context = {"title": "Edit Listing"}
     slug_field = "id"
     slug_url_kwarg = "id"
     success_url = reverse_lazy("booking:owner-dashboard")
-    context_object_name = "job"
 
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
