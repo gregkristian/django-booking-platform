@@ -19,10 +19,10 @@ urlpatterns = [
         ),
     ),
     path(
-        "employee/",
+        "visitor/",
         include(
             [
-                path("favorites", FavoriteListView.as_view(), name="employee-favorites"),
+                path("favorites", FavoriteListView.as_view(), name="user-favorites"),
             ]
         ),
     ),
