@@ -9,12 +9,12 @@ urlpatterns = [
     path("favorite/", favorite, name="favorite"),
     path("search/", SearchView.as_view(), name="search"),
     path(
-        "employer/dashboard/",
+        "owner/dashboard/",
         include(
             [
-                path("", DashboardView.as_view(), name="employer-dashboard"),
-                path("jobs/create/", BookableObjectCreateView.as_view(), name="employer-jobs-create"),
-                path("jobs/<int:id>/edit/", JobUpdateView.as_view(), name="employer-jobs-edit"),
+                path("", DashboardView.as_view(), name="owner-dashboard"),
+                path("create/", BookableObjectCreateView.as_view(), name="create-object"),
+                path("edit/<int:id>/", BookableObjectEditView.as_view(), name="edit-object"),
             ]
         ),
     ),

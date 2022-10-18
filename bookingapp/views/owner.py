@@ -30,7 +30,7 @@ class BookableObjectCreateView(CreateView):
     template_name = "jobs/create.html"
     form_class = CreateBookableObjectForm
     extra_context = {"title": "Post New Job"}
-    success_url = reverse_lazy("booking:employer-dashboard")
+    success_url = reverse_lazy("booking:owner-dashboard")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
     @method_decorator(user_is_employer)
@@ -61,20 +61,20 @@ class BookableObjectCreateView(CreateView):
 
 @method_decorator(login_required(login_url=reverse_lazy("accounts:login")), name="dispatch")
 @method_decorator(user_is_employer, name="dispatch")
-class JobUpdateView(UpdateView):
+class BookableObjectEditView(UpdateView):
     template_name = "jobs/update.html"
     form_class = CreateBookableObjectForm
     extra_context = {"title": "Edit Job"}
     slug_field = "id"
     slug_url_kwarg = "id"
-    success_url = reverse_lazy("booking:employer-dashboard")
+    success_url = reverse_lazy("booking:owner-dashboard")
     context_object_name = "job"
 
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_queryset(self):
-        return BookableObject.objects.filter(user_id=self.request.user.id)
+        return BookableObject.objects.filter(owner=self.request.user.id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -84,7 +84,7 @@ class JobUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         messages.success(self.request, "Job updated successfully")
-        return super(JobUpdateView, self).form_valid(form)
+        return super(BookableObjectEditView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

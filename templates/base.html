@@ -80,13 +80,13 @@
                                     {% endif %}
                                 </a>
                                 <div aria-labelledby="clientZone" class="dropdown-menu">
-                                    <a href="{% url 'booking:employer-dashboard' %}"
-                                       class="dropdown-item {% if url_name == 'employer-dashboard' %}active{% endif %}"
+                                    <a href="{% url 'booking:owner-dashboard' %}"
+                                       class="dropdown-item {% if url_name == 'owner-dashboard' %}active{% endif %}"
                                     >
                                         Dashboard
                                     </a>
-                                    <a href="{% url 'booking:employer-jobs-create' %}"
-                                       class="dropdown-item {% if url_name == 'employer-jobs-create' %}active{% endif %}"
+                                    <a href="{% url 'booking:create-object' %}"
+                                       class="dropdown-item {% if url_name == 'create-object' %}active{% endif %}"
                                     >
                                         Post a new job
                                     </a>
