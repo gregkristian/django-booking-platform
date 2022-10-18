@@ -7,29 +7,7 @@ from django.views.generic import ListView, UpdateView
 from accounts.forms import EmployeeProfileUpdateForm
 from accounts.models import User
 from bookingapp.decorators import user_is_employee
-from bookingapp.models import Applicant, Favorite
-
-
-@method_decorator(login_required(login_url=reverse_lazy("accounts:login")), name="dispatch")
-@method_decorator(user_is_employee, name="dispatch")
-class EmployeeMyJobsListView(ListView):
-    model = Applicant
-    template_name = "jobs/employee/my-applications.html"
-    context_object_name = "applicants"
-    paginate_by = 6
-
-    def get_queryset(self):
-        self.queryset = (
-            self.model.objects.select_related("job").filter(user_id=self.request.user.id).order_by("-created_at")
-        )
-        if (
-            "status" in self.request.GET
-            and len(self.request.GET.get("status")) > 0
-            and int(self.request.GET.get("status")) > 0
-        ):
-            self.queryset = self.queryset.filter(status=int(self.request.GET.get("status")))
-        return self.queryset
-
+from bookingapp.models import Favorite
 
 class EditProfileView(UpdateView):
     model = User

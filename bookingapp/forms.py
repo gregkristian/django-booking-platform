@@ -3,7 +3,7 @@ from datetime import datetime
 from django import forms
 from django.core.exceptions import ValidationError
 
-from bookingapp.models import Applicant, BookableObject
+from bookingapp.models import BookableObject
 
 
 class CreateBookableObjectForm(forms.ModelForm):
@@ -33,8 +33,3 @@ class CreateBookableObjectForm(forms.ModelForm):
                 job.tags.add(tag)
         return job
 
-
-class ApplyJobForm(forms.ModelForm):
-    class Meta:
-        model = Applicant
-        fields = ("job",)
