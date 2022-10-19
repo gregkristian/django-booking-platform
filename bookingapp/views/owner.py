@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from accounts.forms import EmployerProfileUpdateForm
+from accounts.forms import OwnerProfileUpdateForm
 from bookingapp.decorators import user_is_employer
 from bookingapp.forms import CreateBookableObjectForm
 from bookingapp.models import BookableObject
@@ -94,11 +94,11 @@ class BookableObjectEditView(UpdateView):
             return self.form_invalid(form)
 
 
-class EmployerProfileEditView(UpdateView):
-    form_class = EmployerProfileUpdateForm
+class OwnerProfileEditView(UpdateView):
+    form_class = OwnerProfileUpdateForm
     context_object_name = "employer"
-    template_name = "jobs/employer/edit-profile.html"
-    success_url = reverse_lazy("accounts:employer-profile-update")
+    template_name = "accounts/owner-edit-profile.html"
+    success_url = reverse_lazy("accounts:owner-profile-update")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
     @method_decorator(user_is_employer)

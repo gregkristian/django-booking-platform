@@ -90,6 +90,11 @@
                                     >
                                         Post a new job
                                     </a>
+                                    <a href="{% url 'accounts:owner-profile-update' %}"
+                                       class="dropdown-item {% if url_name == 'owner-profile-update' %}active{% endif %}"
+                                    >
+                                        Edit Profile
+                                    </a>
                                     <a href="{% url 'accounts:logout' %}" class="dropdown-item">Logout</a>
                                 </div>
                             </li>
@@ -116,8 +121,8 @@
                                     {% endif %}
                                 </a>
                                 <div aria-labelledby="clientZone" class="dropdown-menu">
-                                    <a href="{% url 'accounts:employee-profile-update' %}"
-                                       class="dropdown-item {% if url_name == 'employee-profile-update' %}active{% endif %}"
+                                    <a href="{% url 'accounts:visitor-profile-update' %}"
+                                       class="dropdown-item {% if url_name == 'visitor-profile-update' %}active{% endif %}"
                                     >
                                         Edit Profile
                                     </a>

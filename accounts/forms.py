@@ -114,9 +114,9 @@ class UserLoginForm(forms.Form):
         return self.user
 
 
-class EmployeeProfileUpdateForm(forms.ModelForm):
+class VisitorProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(EmployeeProfileUpdateForm, self).__init__(*args, **kwargs)
+        super(VisitorProfileUpdateForm, self).__init__(*args, **kwargs)
         self.fields["first_name"].widget.attrs.update({"placeholder": "Enter First Name"})
         self.fields["last_name"].widget.attrs.update({"placeholder": "Enter Last Name"})
 
@@ -125,9 +125,9 @@ class EmployeeProfileUpdateForm(forms.ModelForm):
         fields = ["first_name", "last_name", "gender"]
 
 
-class EmployerProfileUpdateForm(forms.ModelForm):
+class OwnerProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(EmployerProfileUpdateForm, self).__init__(*args, **kwargs)
+        super(OwnerProfileUpdateForm, self).__init__(*args, **kwargs)
         self.fields["first_name"].widget.attrs["placeholder"] = "Company name"
         self.fields["last_name"].widget.attrs["placeholder"] = "Company address"
         self.fields["first_name"].label = "Company name"
