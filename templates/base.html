@@ -125,20 +125,20 @@
                                 </div>
                             </li>
                         {% else %}
-                            <li class="nav-item dropdown {% if url_name == 'employee-register' or url_name == 'employer-register' %}active{% endif %}">
+                            <li class="nav-item dropdown {% if url_name == 'visitor-register' or url_name == 'owner-register' %}active{% endif %}">
                                 <a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                    class="nav-link dropdown-toggle "><i class="fa fa-signing"></i>Register
                                 </a>
                                 <div aria-labelledby="pages" class="dropdown-menu">
-                                    <a href="{% url 'accounts:employee-register' %}"
-                                       class="dropdown-item {% if url_name == 'employee-register' %}active{% endif %}"
+                                    <a href="{% url 'accounts:visitor-register' %}"
+                                       class="dropdown-item {% if url_name == 'visitor-register' %}active{% endif %}"
                                     >
-                                        Employee
+                                        Visitor
                                     </a>
-                                    <a href="{% url 'accounts:employer-register' %}"
-                                       class="dropdown-item {% if url_name == 'employer-register' %}active{% endif %}"
+                                    <a href="{% url 'accounts:owner-register' %}"
+                                       class="dropdown-item {% if url_name == 'owner-register' %}active{% endif %}"
                                     >
-                                        Employers
+                                        Owner
                                     </a>
                                 </div>
                             </li>

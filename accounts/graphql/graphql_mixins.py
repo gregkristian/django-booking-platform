@@ -1,14 +1,14 @@
 from django.contrib.auth import get_user_model
 from django.db import transaction
 
-from accounts.forms import EmployeeRegistrationForm, EmployerRegistrationForm
+from accounts.forms import VisitorRegistrationForm, OwnerRegistrationForm
 from bookingapp.graphql.graphql_base import Output
 
 UserModel = get_user_model()
 
 
 class EmployeeRegisterMixin(Output):
-    form = EmployeeRegistrationForm
+    form = VisitorRegistrationForm
 
     @classmethod
     def resolve_mutation(cls, root, info, **kwargs):
@@ -27,7 +27,7 @@ class EmployeeRegisterMixin(Output):
 
 
 class EmployerRegisterMixin(Output):
-    form = EmployerRegistrationForm
+    form = OwnerRegistrationForm
 
     @classmethod
     def resolve_mutation(cls, root, info, **kwargs):

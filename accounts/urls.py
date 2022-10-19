@@ -9,8 +9,8 @@ from .views import *
 app_name = "accounts"
 
 urlpatterns = [
-    path("employee/register/", RegisterEmployeeView.as_view(), name="employee-register"),
-    path("employer/register/", RegisterEmployerView.as_view(), name="employer-register"),
+    path("visitor/register/", VisitorRegistrationView.as_view(), name="visitor-register"),
+    path("owner/register/", OwnerRegistrationView.as_view(), name="owner-register"),
     path("employee/profile/update/", EditProfileView.as_view(), name="employee-profile-update"),
     path("employer/profile/update/", EmployerProfileEditView.as_view(), name="employer-profile-update"),
     path("logout/", LogoutView.as_view(), name="logout"),
