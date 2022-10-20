@@ -27,7 +27,7 @@ class BookableObject(models.Model):
         ordering = ["id"]
 
     def get_absolute_url(self):
-        return reverse("booking:jobs-detail", args=[self.id])
+        return reverse("booking:object-detail", args=[self.id])
 
     def __str__(self):
         return self.name

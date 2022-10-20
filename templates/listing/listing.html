@@ -46,7 +46,7 @@
                                     <img src="{% static 'img/farm.png' %}" alt="Ipsioou " class="img-fluid">
                                 </div>
                                 <div class="col-10">
-                                    <h4 class="job__title"><a href="{% url 'booking:jobs-detail' job.id %}">{{ job.name }}</a></h4>
+                                    <h4 class="job__title"><a href="{% url 'booking:object-detail' job.id %}">{{ job.name }}</a></h4>
                                     {% for tag in job.tags.all %}
                                         <span style="color: #ffffff;" class="badge featured-badge badge-secondary">{{ tag.name }}</span>
                                     {% endfor %}

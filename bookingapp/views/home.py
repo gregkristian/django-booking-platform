@@ -13,7 +13,7 @@ from ..models import Favorite, BookableObject
 class HomeView(ListView):
     model = BookableObject
     template_name = "home.html"
-    context_object_name = "jobs"
+    context_object_name = "objects"
 
     def get_queryset(self):
         return self.model.objects.all()
@@ -45,16 +45,16 @@ class BookableObjectListView(ListView):
     paginate_by = 5
 
 
-class JobDetailsView(DetailView):
+class ObjectDetailView(DetailView):
     model = BookableObject
-    template_name = "jobs/details.html"
-    context_object_name = "job"
+    template_name = "listing/details.html"
+    context_object_name = "object"
     pk_url_kwarg = "id"
 
     def get_object(self, queryset=None):
-        obj = super(JobDetailsView, self).get_object(queryset=queryset)
+        obj = super(ObjectDetailView, self).get_object(queryset=queryset)
         if obj is None:
-            raise Http404("Job doesn't exists")
+            raise Http404("Object doesn't exists")
         return obj
 
     def get(self, request, *args, **kwargs):
@@ -62,7 +62,7 @@ class JobDetailsView(DetailView):
             self.object = self.get_object()
         except Http404:
             # raise error
-            raise Http404("Job doesn't exists")
+            raise Http404("Object doesn't exists")
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 

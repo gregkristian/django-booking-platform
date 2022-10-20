@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+    Object details
+{% endblock %}
+
+{% block content %}
+
+    <section class="bg-light-gray">
+        <div class="container">
+            <h1 class="heading">{{ object.name }}<br>
+                <small>at {{ object.address }}</small>
+            </h1>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>{{ object.name }}</h3>
+                    <h5>{{ object.address }}</h5>
+                    <p>{{ object.description }}</p>
+                    <p>{{ object.creation_date }}</p>
+                    <p>{{ object.tags }}</p>
+                    <p>Farm image TODO </p>
+                    
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3">
+                    <h4>About the owner:</h4>
+                    <p>TODO</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

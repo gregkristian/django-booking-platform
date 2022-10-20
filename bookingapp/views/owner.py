@@ -15,8 +15,8 @@ from tags.models import Tag
 
 class DashboardView(ListView):
     model = BookableObject
-    template_name = "jobs/employer/dashboard.html"
-    context_object_name = "jobs"
+    template_name = "accounts/owner-dashboard.html"
+    context_object_name = "objects"
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
     @method_decorator(user_is_owner)

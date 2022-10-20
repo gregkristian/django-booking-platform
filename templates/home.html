@@ -55,7 +55,7 @@
         <div class="container">
             <h3 class="heading">Featured listings</h3>
             <div class="row featured align-items-stretch">
-                {% for job in jobs %}
+                {% for object in objects %}
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="box-image-text bg-visible full-height">
                             <div class="top">
@@ -67,15 +67,15 @@
                                 </a>
                             </div>
                             <div class="content">
-                                <h5><a href="{% url 'booking:jobs-detail' job.id %}">{{ job.title }}</a></h5>
+                                <h5><a href="{% url 'booking:object-detail' object.id %}">{{ object.name }}</a></h5>
                                 <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
-                                    {{ job.location }}
+                                    {{ object.address }}
                                 </p>
-                                {% for tag in job.tags.all %}
+                                {% for tag in object.tags.all %}
                                     <span style="color: #ffffff;"
                                           class="badge featured-badge badge-secondary">{{ tag.name }}</span>
                                 {% endfor %}
-                                <p>{{ job.description }}</p>
+                                <p>{{ object.description }}</p>
                             </div>
                         </div>
                     </div>
