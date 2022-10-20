@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 
-from ..decorators import user_is_employee
+from ..decorators import user_is_visitor
 from ..models import Favorite, BookableObject
 
 

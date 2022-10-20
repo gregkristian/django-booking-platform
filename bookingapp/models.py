@@ -19,7 +19,7 @@ class BookableObject(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     description = models.TextField()
     creation_date = models.DateTimeField(default=timezone.now)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, default="tag")
 
     objects = BookableObjectManager()
 

@@ -61,7 +61,7 @@
                         <li class="nav-item">
                             <a href="/{{ LANGUAGE_CODE }}/about-us/" class="nav-link">About Us</a>
                         </li>
-                        {% if request.user.is_authenticated and request.user.role == 'employer' %}
+                        {% if request.user.is_authenticated and request.user.role == 'owner' %}
                             <li class="nav-item dropdown">
                                 <a id="clientZone" href="#" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false"
@@ -73,10 +73,10 @@
                                                  class="img-fluid">
                                         </div>
                                     </div>
-                                    {% if request.user.role == 'employee' %}
+                                    {% if request.user.role == 'visitor' %}
                                         {{ request.user.first_name }} {{ request.user.last_name }}
                                     {% else %}
-                                        {{ request.user.first_name }}
+                                        {{ request.user.first_name }} {{ request.user.last_name }}
                                     {% endif %}
                                 </a>
                                 <div aria-labelledby="clientZone" class="dropdown-menu">
@@ -88,7 +88,7 @@
                                     <a href="{% url 'booking:create-object' %}"
                                        class="dropdown-item {% if url_name == 'create-object' %}active{% endif %}"
                                     >
-                                        Post a new job
+                                        Post a new listing
                                     </a>
                                     <a href="{% url 'accounts:owner-profile-update' %}"
                                        class="dropdown-item {% if url_name == 'owner-profile-update' %}active{% endif %}"
@@ -98,7 +98,7 @@
                                     <a href="{% url 'accounts:logout' %}" class="dropdown-item">Logout</a>
                                 </div>
                             </li>
-                        {% elif request.user.is_authenticated and request.user.role == 'employee' %}
+                        {% elif request.user.is_authenticated and request.user.role == 'visitor' %}
                             <li class="nav-item {% if url_name == 'user-favorites' %}active{% endif %}">
                                 <a href="{% url 'booking:user-favorites' %}" class="nav-link">Favorites</a>
                             </li>
@@ -114,7 +114,7 @@
                                                  class="img-fluid">
                                         </div>
                                     </div>
-                                    {% if request.user.role == 'employee' %}
+                                    {% if request.user.role == 'visitor' %}
                                         {{ request.user.first_name }} {{ request.user.last_name }}
                                     {% else %}
                                         {{ request.user.first_name }}

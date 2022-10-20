@@ -6,7 +6,7 @@ from django.views.generic import ListView, UpdateView
 
 from accounts.forms import VisitorProfileUpdateForm
 from accounts.models import User
-from bookingapp.decorators import user_is_employee
+from bookingapp.decorators import user_is_visitor
 from bookingapp.models import Favorite
 
 class VisitorEditProfileView(UpdateView):
@@ -17,7 +17,7 @@ class VisitorEditProfileView(UpdateView):
     success_url = reverse_lazy("accounts:visitor-profile-update")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
-    @method_decorator(user_is_employee)
+    @method_decorator(user_is_visitor)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
@@ -37,7 +37,7 @@ class VisitorEditProfileView(UpdateView):
 
 
 @method_decorator(login_required(login_url=reverse_lazy("accounts:login")), name="dispatch")
-@method_decorator(user_is_employee, name="dispatch")
+@method_decorator(user_is_visitor, name="dispatch")
 class FavoriteListView(ListView):
     model = Favorite
     template_name = "jobs/employee/favorites.html"

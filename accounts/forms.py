@@ -31,7 +31,7 @@ class VisitorRegistrationForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
-        user.role = "employee"
+        user.role = "visitor"
         if commit:
             user.save()
         return user
@@ -43,13 +43,13 @@ class OwnerRegistrationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super(OwnerRegistrationForm, self).__init__(*args, **kwargs)
-        self.fields["first_name"].label = "Company Name"
-        self.fields["last_name"].label = "Company Address"
+        self.fields["first_name"].label = "First Name"
+        self.fields["last_name"].label = "Last Name"
         self.fields["password1"].label = "Password"
         self.fields["password2"].label = "Confirm Password"
 
-        self.fields["first_name"].widget.attrs.update({"placeholder": "Enter Company Name"})
-        self.fields["last_name"].widget.attrs.update({"placeholder": "Enter Company Address"})
+        self.fields["first_name"].widget.attrs.update({"placeholder": "Enter First Name"})
+        self.fields["last_name"].widget.attrs.update({"placeholder": "Enter Last Name"})
         self.fields["email"].widget.attrs.update({"placeholder": "Enter Email"})
         self.fields["password1"].widget.attrs.update({"placeholder": "Enter Password"})
         self.fields["password2"].widget.attrs.update({"placeholder": "Confirm Password"})
@@ -64,7 +64,7 @@ class OwnerRegistrationForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
-        user.role = "employer"
+        user.role = "owner"
         if commit:
             user.save()
         return user
@@ -114,10 +114,10 @@ class VisitorProfileUpdateForm(forms.ModelForm):
 class OwnerProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(OwnerProfileUpdateForm, self).__init__(*args, **kwargs)
-        self.fields["first_name"].widget.attrs["placeholder"] = "Company name"
-        self.fields["last_name"].widget.attrs["placeholder"] = "Company address"
-        self.fields["first_name"].label = "Company name"
-        self.fields["last_name"].label = "Company address"
+        self.fields["first_name"].widget.attrs["placeholder"] = "Enter First Name"
+        self.fields["last_name"].widget.attrs["placeholder"] = "Enter Last Name"
+        self.fields["first_name"].label = "First name"
+        self.fields["last_name"].label = "Last name"
 
     class Meta:
         model = User

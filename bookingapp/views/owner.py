@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from accounts.forms import OwnerProfileUpdateForm
-from bookingapp.decorators import user_is_employer
+from bookingapp.decorators import user_is_owner
 from bookingapp.forms import CreateBookableObjectForm
 from bookingapp.models import BookableObject
 from tags.models import Tag
@@ -19,7 +19,7 @@ class DashboardView(ListView):
     context_object_name = "jobs"
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
-    @method_decorator(user_is_employer)
+    @method_decorator(user_is_owner)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
@@ -33,11 +33,11 @@ class BookableObjectCreateView(CreateView):
     success_url = reverse_lazy("booking:owner-dashboard")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
-    @method_decorator(user_is_employer)
+    @method_decorator(user_is_owner)
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return reverse_lazy("accounts:login")
-        if self.request.user.is_authenticated and self.request.user.role != "employer":
+        if self.request.user.is_authenticated and self.request.user.role != "owner":
             return reverse_lazy("accounts:login")
         return super().dispatch(self.request, *args, **kwargs)
 
@@ -60,7 +60,7 @@ class BookableObjectCreateView(CreateView):
 
 
 @method_decorator(login_required(login_url=reverse_lazy("accounts:login")), name="dispatch")
-@method_decorator(user_is_employer, name="dispatch")
+@method_decorator(user_is_owner, name="dispatch")
 class BookableObjectEditView(UpdateView):
     template_name = "listing/edit.html"
     form_class = CreateBookableObjectForm
@@ -101,7 +101,7 @@ class OwnerProfileEditView(UpdateView):
     success_url = reverse_lazy("accounts:owner-profile-update")
 
     @method_decorator(login_required(login_url=reverse_lazy("accounts:login")))
-    @method_decorator(user_is_employer)
+    @method_decorator(user_is_owner)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
