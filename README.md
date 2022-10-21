@@ -1,23 +1,20 @@
-## PLAN:
-Summary: Remove all booking interaction. Make it basic info platform
-
-1. Rename BookableEvent back to BookableObject
-2. Remove everything related to booking (date, button, etc)
-    2a. Create page for owner: only to create object
-    2b. For user: can search but cannot book
-3. C
-
 # Django Booking Platform
-#### Forked from [manjurulhoque/django-job-portal](https://github.com/manjurulhoque/django-job-portal)
-#### An open source online booking platform.
+#### Originally forked from [manjurulhoque/django-job-portal](https://github.com/manjurulhoque/django-job-portal)
 
+## Description
+ An open source online booking platform based on django and sqlite3.
+ 
+ User is divided into visitor and owner. Owner can add new object to the listing and modify the details. Visitor can search and see the listing to get more information.
 
-Used Tech Stack
+ To be implemented: booking function
+
+Tech Stack:
 
 1. Django
 2. Sqlite
 
-## Installation
+## Setup
+### Installation
 
 1. Create a virtual environment
 
@@ -31,38 +28,25 @@ Used Tech Stack
 
     `pip install -r requirements.txt`
 
-4. Add `.env` file.
 
-    `cp .env.dev.sample .env`
+### Run
 
-5. Add Github client ID and client secret in the `.env` file
+1. (Only applicable when debug=True) With the venv activated, execute:
 
-#### Run
-
-1.With the venv activate it, execute:
-
-    python manage.py collectstatic
-
-*Note* : Collect static is not necessary when debug is True (in dev mode)
+    `python manage.py collectstatic`
 
 2. Create initial database:
 
     `python manage.py migrate`
 
-
-3. Load demo data (optional):
-
-    `python manage.py loaddata fixtures/app_name_initial_data.json --app app.model_name`
+3. Load demo data (optional): TODO
 
 4. Run server:
 
     `python manage.py runserver`
 
+### Run test:
+TODO
 
-#### Run test:
-``python manage.py test``
-
-#### To dump data:
-``python manage.py dumpdata --format=json --indent 4 app_name > app_name/fixtures/app_name_initial_data.json``
-
-Show your support by 🌟 the project!!
+### To dump data:
+TODO
