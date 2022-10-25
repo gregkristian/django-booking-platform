@@ -12,9 +12,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 env = environ.Env()
 
-SECRET_KEY = "@pzqp#x^+#(olu#wy(6=mi9&a8n+g&x#af#apn07@j=5oin=xb"
+# By default, set django to use hardcoded secret key and DJANGO_DEBUG = False
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '2(7v_(+vyibakmy)wyp+qzonp73jqfy_=8x%^^66qm-z-ohp!f')
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False')
 
-# DEBUG = True
 SITE_ID = 1
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -242,8 +243,6 @@ SWAGGER_SETTINGS = {
     ],
     "USE_SESSION_AUTH": False,
 }
-
-DEBUG = True
 
 LOGIN_URL = reverse_lazy("accounts:login")
 LOGIN_REDIRECT_URL = "/"
