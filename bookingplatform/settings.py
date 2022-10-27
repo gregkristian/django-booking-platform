@@ -1,6 +1,7 @@
 import os
 import sys
 from datetime import timedelta
+from django.core.management.utils import get_random_secret_key
 
 import environ
 from django.urls import reverse_lazy
@@ -13,7 +14,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 env = environ.Env()
 
 # By default, set django to use hardcoded secret key and DJANGO_DEBUG = False
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False')
 
 SITE_ID = 1
