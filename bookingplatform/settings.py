@@ -1,6 +1,7 @@
 import os
 import sys
 from datetime import timedelta
+from django.core.management.utils import get_random_secret_key
 
 import environ
 from django.urls import reverse_lazy
@@ -12,9 +13,11 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 env = environ.Env()
 
-SECRET_KEY = "@pzqp#x^+#(olu#wy(6=mi9&a8n+g&x#af#apn07@j=5oin=xb"
+# By default, set django to use hardcoded secret key and DJANGO_DEBUG = False
 
-# DEBUG = True
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False')
+
 SITE_ID = 1
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -242,8 +245,6 @@ SWAGGER_SETTINGS = {
     ],
     "USE_SESSION_AUTH": False,
 }
-
-DEBUG = True
 
 LOGIN_URL = reverse_lazy("accounts:login")
 LOGIN_REDIRECT_URL = "/"
