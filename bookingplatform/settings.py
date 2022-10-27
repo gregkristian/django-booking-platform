@@ -16,7 +16,7 @@ env = environ.Env()
 # By default, set django to use hardcoded secret key and DJANGO_DEBUG = False
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False')
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True')
 
 SITE_ID = 1
 INSTALLED_APPS = [

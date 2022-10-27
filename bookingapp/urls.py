@@ -27,5 +27,6 @@ urlpatterns = [
         ),
     ),
     path("farms/", BookableObjectListView.as_view(), name="farms"),
+    path("about-us/", AboutUsView.as_view(), name="about-us"),
     path("object/<int:id>/", ObjectDetailView.as_view(), name="object-detail"),
 ]
